@@ -11,7 +11,7 @@ export default function Signup() {
 
       <div className="column">
         <Illustration />
-        <Form className={`${classes.signup} form`}>
+        <Form className={`${classes.signup}`}>
           <TextInput type="text" placeholder="Enter name" icon="person" />
 
           <TextInput

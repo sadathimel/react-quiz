@@ -8,6 +8,7 @@ function App() {
     <Layout>
       <Home></Home>
       <Signup />
+      
     </Layout>
   );
 }
