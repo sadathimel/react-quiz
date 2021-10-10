@@ -1,8 +1,9 @@
+import classes from "../styles/Login.module.css";
 export default function Login(params) {
     return (
         <>
-            <title>Login - Learn with Sumit</title>
-            
+            <h1>Login to your account</h1>
+
         </>
     )
 }
