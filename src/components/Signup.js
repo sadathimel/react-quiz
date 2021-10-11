@@ -11,6 +11,7 @@ export default function Signup() {
 
       <div className="column">
         <Illustration />
+         
         <Form className={`${classes.signup}`}>
           <TextInput type="text" placeholder="Enter name" icon="person" />
 
@@ -29,7 +30,7 @@ export default function Signup() {
           />
 
           <Checkbox text="I agree to the Terms Conditions"  />
-          <Button text="hjkdha">Submit now</Button>
+          <Button >Submit now</Button>
 
           <div className="info">
             Already have an account? <a href="login.html">Login</a> instead.
