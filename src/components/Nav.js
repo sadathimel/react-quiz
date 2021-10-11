@@ -1,16 +1,17 @@
 import Account from "./Account";
-import classes from '../styles/Nav.module.css'
-import logo from '../assets/images/logo-bg.svg'
+import classes from '../styles/Nav.module.css';
+import logo from '../assets/images/logo-bg.svg';
+import {Link} from "react-router-dom";
 
 export default function Nav(){
     return (
         <nav className={classes.nav}>
       <ul>
         <li>
-          <a href="index.html" className={classes.brand}>
+          <Link to="/" className={classes.brand}>
             <img src={logo} alt="Logo" />
             <h3>React</h3>
-          </a>
+          </Link>
         </li>
       </ul>
       <Account />

@@ -1,5 +1,5 @@
-import classes from '../styles/MiniPlayer.module.css';
 import image from '../assets/images/3.jpg';
+import classes from '../styles/MiniPlayer.module.css';
 
 export default function MiniPlayer() {
     return(
