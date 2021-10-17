@@ -1,5 +1,5 @@
 // import classes from "../styles/Login.module.css";
-import classes from "../../styles/Login.module.css"
+import classes from "../../styles/Login.module.css";
 import Button from "../Button";
 import Form from "../Form";
 import Illustration from "../Illustration";
@@ -7,9 +7,9 @@ import TextInput from "../TextInput";
 export default function Login() {
     return (
         <>
-            <h1>Login to your account</h1>
+         <h1>Login to your account</h1>
 
-            <div className="column">
+         <div className="column">
         <Illustration />
          
         <Form className={`${classes.login}`}>
@@ -29,8 +29,8 @@ export default function Login() {
           Don't have an account?  <a href="login.html">Login</a> instead.
           </div>
         </Form>
-      </div>
+         </div>
 
-        </>
+      </>
     )
 }
