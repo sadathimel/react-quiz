@@ -45,7 +45,7 @@ export default function SignupForm() {
 
     return (
         <div>
-        <Form className={{height: "500px"}} onSubmit = {handleSubmit}>
+        <Form style={{height: "500px"}} onSubmit = {handleSubmit}>
           <TextInput 
             type="text" 
             placeholder="Enter name" 
