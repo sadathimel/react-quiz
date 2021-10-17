@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
@@ -18,6 +18,7 @@ export default function SignupForm() {
     const [loading, setLoading] = useState();
 
     const {signup} = useAuth();
+    const history = useHistory();
 
     async function handleSubmit(e){
         e.preventDefault();
@@ -30,8 +31,12 @@ export default function SignupForm() {
         try {
             setError("");
             setLoading(true);
-        } catch (error) {
-            
+            await signup(email, password, username);
+            history.push("/");
+        } catch (err) {
+            console.log(err);
+            setLoading(false);
+            setError("Failed to create an account!")
         }
         
     }
@@ -40,7 +45,7 @@ export default function SignupForm() {
 
     return (
         <div>
-        <Form className={{height: "500px"}}>
+        <Form className={{height: "500px"}} onSubmit = {handleSubmit}>
           <TextInput 
             type="text" 
             placeholder="Enter name" 
@@ -84,7 +89,7 @@ export default function SignupForm() {
             onChange={(e)=> setAgree(e.target.value)} 
           />
 
-          <Button >
+          <Button disabled={loading} type= "submit">
               <span>Submit now</span>
           </Button>
 
