@@ -1,6 +1,7 @@
 import "../styles/App.css";
 import Layout from "./Layout";
-import Login from "./page/Login";
+// import Login from "./page/Login";
+import Quiz from "./page/Quiz";
 // import Home from "./page/Home";
 // import Signup from "./page/Signup";
 
@@ -9,7 +10,8 @@ function App() {
     <Layout>
       {/* <Home /> */}
       {/* <Signup /> */}
-      <Login />
+      {/* <Login /> */}
+      <Quiz />
     </Layout>
   );
 }
