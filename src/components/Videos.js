@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import useVideoList from "../hooks/useVideoList";
 
 export default function Videos() {
-  const { loading, error, videos } = useVideoList();
+  const { loading, error, videos } = useVideoList(0);
   return (
     <div className={classes.videos}>
       {videos.length > 0 &&
@@ -14,7 +14,7 @@ export default function Videos() {
           </Link>
         ))}
         {!loading && videos.length === 0 && <div> No data found!</div>}
-        {!error && <div> There was an error!</div>}
+        {error && <div> There was an error!</div>}
         {loading && <div>Loading...</div>}
     </div>
   );
