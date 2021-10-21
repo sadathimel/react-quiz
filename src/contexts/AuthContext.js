@@ -16,7 +16,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
@@ -27,6 +27,8 @@ export function AuthProvider({ children }) {
     });
     return unsubscribe;
   },[]);
+
+ 
 
   // signup function
   async function signup(email, password, username) {

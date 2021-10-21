@@ -1,5 +1,5 @@
 import Answers from "../Answers";
-import ProgressBar from "../ProgressBar";
+import ProgressBar from "./ProgressBar";
 import MiniPlayer from "../MiniPlayer";
 
 export default function Quiz() {
