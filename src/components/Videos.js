@@ -15,11 +15,19 @@ export default function Videos() {
           hasMore={hasMore}
           next={() => setPage(page + 8)}
         >
-          {videos.map((video) => (
-            <Link to="/quiz" key={video.youtubeID}>
+          {videos.map((video) =>
+            video.noq > 0 ? (
+              <Link to="/quiz" key={video.youtubeID}>
+                <Video
+                  title={video.title}
+                  id={video.youtubeID}
+                  noq={video.noq}
+                />
+              </Link>
+            ) : (
               <Video title={video.title} id={video.youtubeID} noq={video.noq} />
-            </Link>
-          ))}
+            )
+          )}
         </InfiniteScroll>
       )}
       {!loading && videos.length === 0 && <div> No data found!</div>}
