@@ -18,7 +18,6 @@ const reducer = (state, action) => {
         });
       });
       return action.value;
-
     case "answer":
       const questions = _.cloneDeep(state);
       questions[action.questionID].options[action.optionIndex].checked =
@@ -47,7 +46,7 @@ export default function Quiz() {
   function handleAnswerChange(e, index) {
     dispatch({
       type: "answer",
-      questionsID: currentQuestion,
+      questionID: currentQuestion,
       optionIndex: index,
       value: e.target.checked,
     });
@@ -57,7 +56,7 @@ export default function Quiz() {
     <>
       {loading && <div>Loading...</div>}
       {error && <div>There was an error!</div>}
-      {!loading && error && qna && qna.length > 0 && (
+      {!loading && !error && qna && qna.length > 0 && (
         <>
           <h1>{qna[currentQuestion].title}</h1>
           <h4>Question can have multiple answers</h4>
