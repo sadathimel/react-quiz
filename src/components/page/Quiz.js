@@ -1,11 +1,13 @@
 import Answers from "../Answers";
 import ProgressBar from "./ProgressBar";
 import MiniPlayer from "../MiniPlayer";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams,useHistory } from "react-router-dom";
+import { useEffect, useState} from "react";
 import useQuestions from "../../hooks/useQuestions";
 import { useReducer } from "react";
 import _ from "lodash";
+import { useAuth } from "../../contexts/AuthContext";
+import { getDatabase, set,ref } from "@firebase/database";
 
 const initialState = null;
 
@@ -36,6 +38,9 @@ export default function Quiz() {
 
   const [qna, dispatch] = useReducer(reducer, initialState);
 
+  const {currentUser} = useAuth();
+  const history = useHistory();
+
   useEffect(() => {
     dispatch({
       type: "questions",
@@ -52,6 +57,42 @@ export default function Quiz() {
     });
   }
 
+  // handle when user clicks the next button to get the nex question
+  function nextQuestion() {
+    if (currentQuestion + 1 < questions.length) {
+      setCurrentQuestion((prevCurrent) => prevCurrent + 1);
+    }
+  }
+
+  // handle when user clicks the prev button to get back to the previous question
+  function prevQuestion() {
+    if (currentQuestion >= 1 && currentQuestion <= questions.length) {
+      setCurrentQuestion((prevCurrent) => prevCurrent - 1);
+    }
+  }
+
+  // submit quiz
+
+  async function submit(){
+
+    const {uid} = currentUser;
+    const db = getDatabase();
+    const resultRef = ref(db, `result/${uid}`);
+
+    await set(resultRef,{
+      [id]: qna
+    });
+    history.push({
+      pathname: `/result/${id}`,
+      state: {
+        qna,
+      }
+    });
+  }
+
+  // claculate percentage of progress
+  const percentage = questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
+
   return (
     <>
       {loading && <div>Loading...</div>}
@@ -65,7 +106,12 @@ export default function Quiz() {
             options={qna[currentQuestion].options}
             handleChange={handleAnswerChange}
           />
-          <ProgressBar />
+          <ProgressBar
+            next={nextQuestion}
+            prev={prevQuestion}
+            submit={submit}
+            progress={percentage}
+          />
           <MiniPlayer />
         </>
       )}
