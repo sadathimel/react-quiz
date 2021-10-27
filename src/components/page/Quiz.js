@@ -1,13 +1,13 @@
 import Answers from "../Answers";
 import ProgressBar from "./ProgressBar";
 import MiniPlayer from "../MiniPlayer";
-import { useParams,useHistory } from "react-router-dom";
-import { useEffect, useState} from "react";
+import { useParams, useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
 import useQuestions from "../../hooks/useQuestions";
 import { useReducer } from "react";
 import _ from "lodash";
 import { useAuth } from "../../contexts/AuthContext";
-import { getDatabase, set,ref } from "@firebase/database";
+import { getDatabase, set, ref } from "@firebase/database";
 
 const initialState = null;
 
@@ -38,7 +38,7 @@ export default function Quiz() {
 
   const [qna, dispatch] = useReducer(reducer, initialState);
 
-  const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
   const history = useHistory();
 
   useEffect(() => {
@@ -73,25 +73,25 @@ export default function Quiz() {
 
   // submit quiz
 
-  async function submit(){
-
-    const {uid} = currentUser;
+  async function submit() {
+    const { uid } = currentUser;
     const db = getDatabase();
     const resultRef = ref(db, `result/${uid}`);
 
-    await set(resultRef,{
-      [id]: qna
+    await set(resultRef, {
+      [id]: qna,
     });
     history.push({
       pathname: `/result/${id}`,
       state: {
         qna,
-      }
+      },
     });
   }
 
   // claculate percentage of progress
-  const percentage = questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
+  const percentage =
+    questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
 
   return (
     <>
@@ -103,6 +103,7 @@ export default function Quiz() {
           <h4>Question can have multiple answers</h4>
 
           <Answers
+            input
             options={qna[currentQuestion].options}
             handleChange={handleAnswerChange}
           />

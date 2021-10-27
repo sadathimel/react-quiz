@@ -9,7 +9,7 @@ export default function Question({ answers = [] }) {
         <span className="material-icons-outlined"> help_outline </span>
         {answer.title}
       </div>
-      <Answers />
+      <Answers input={false} options={answer.options}/>
     </div>
   ));
 }
