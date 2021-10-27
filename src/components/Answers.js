@@ -9,6 +9,7 @@ export default function Answers({ options = [], handleChange }) {
         <Checkbox
           className={classes.answer}
           text={option.title}
+          key={index}
           value={index}
           checked={option.checked}
           onChange={(e) => handleChange(e, index)}
